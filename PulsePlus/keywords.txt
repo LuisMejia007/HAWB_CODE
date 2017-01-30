@@ -1,0 +1,29 @@
+#######################################
+# Syntax Coloring Map For Pulse
+#######################################
+
+#######################################
+# Datatypes (KEYWORD1)
+#######################################
+
+#######################################
+# Methods and Functions (KEYWORD2)
+#######################################
+
+PulseH	KEYWORD2
+PulseL	KEYWORD2
+PulseTrainH	KEYWORD2
+PulseTrainL	KEYWORD2
+PulseTrain KEYWORD2
+PulseTrainVar KEYWORD2
+
+#######################################
+# Instances (KEYWORD2)
+#######################################
+
+PulsePlus	KEYWORD2
+
+#######################################
+# Constants (LITERAL1)
+#######################################
+
