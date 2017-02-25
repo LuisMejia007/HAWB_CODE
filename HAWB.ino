@@ -55,7 +55,7 @@ void setup(void)
    myFile = SD.open("HAWB_Data.csv", FILE_WRITE);
 
    if(myFile)
-      myFile.write(" \"UVindex\",\"Roll\",\"Pitch\",\"Heading\", \"Altitude(m)\", \"Temp(c)\"\n ");
+      myFile.println(" \"UVindex\",\"Roll\",\"Pitch\",\"Heading\", \"Altitude(m)\", \"Temp(c)\"\n ");
 
      myFile.close();
   /* Initialise the sensors */
@@ -85,8 +85,10 @@ void loop(void){
     if (dof.accelGetOrientation(&accel_event, &orientation))
     {
       /* 'orientation' should have valid .roll and .pitch fields */
-      csv += orientation.roll + ",";
-      csv += orientation.pitch + ",";
+      csv += orientation.roll;
+      csv += ",";
+      csv += orientation.pitch;
+      csv +=",";
     }
     
     /* Calculate the heading using the magnetometer */
@@ -94,7 +96,8 @@ void loop(void){
     if (dof.magGetOrientation(SENSOR_AXIS_Z, &mag_event, &orientation))
     {
       /* 'orientation' should have valid .heading data now */
-      csv += orientation.heading + ",";
+      csv += orientation.heading;
+      csv += ",";
     }
   
     /* Calculate the altitude using the barometric pressure sensor */
@@ -106,7 +109,8 @@ void loop(void){
       bmp.getTemperature(&temperature);
       
       /* Convert atmospheric pressure, SLP and temp to altitude    */
-      csv += bmp.pressureToAltitude(seaLevelPressure,bmp_event.pressure,temperature) + ",";
+      csv += bmp.pressureToAltitude(seaLevelPressure,bmp_event.pressure,temperature);
+      csv += ",";
       
       /* Display the temperature */
       csv += temperature;
@@ -115,8 +119,8 @@ void loop(void){
      
   if(myFile){
 
-     myFile.write(csv);
-     myFile.write("\n");
+     myFile.println(csv);
+     myFile.println("\n");
     
     }
   else{
